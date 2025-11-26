@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers | AGRO FERTILIZER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #a5d6a7;
+            --accent: #ff9800;
+            --text-dark: #212121;
+            --text-muted: #616161;
+            --bg-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-radius: 16px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .workers-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2.5rem;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .workers-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .page-title i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn-custom {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
+            color: white;
+        }
+
+        .workers-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 -2.5rem;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .workers-count {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .worker-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .worker-item {
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: var(--transition);
+        }
+
+        .worker-item:last-child {
+            border-bottom: none;
+        }
+
+        .worker-item:hover {
+            background-color: #f9f9f9;
+            transform: translateX(5px);
+        }
+
+        .worker-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .worker-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .worker-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .worker-main-info {
+            flex: 1;
+        }
+
+        .worker-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 5px;
+        }
+
+        .worker-name a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .worker-name a:hover {
+            color: var(--primary);
+        }
+
+        .worker-meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .worker-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .worker-meta-item i {
+            width: 16px;
+            color: var(--primary);
+        }
+
+        .worker-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .action-btn:hover {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-light);
+        }
+
+        .empty-state h3 {
+            margin: 0 0 10px;
+            font-weight: 600;
+        }
+
+        .empty-state p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .worker-details {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .worker-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            
+            .workers-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="workers-container">
+            <div class="page-header">
+                <h1 class="page-title"><i class="fas fa-hard-hat"></i> All Workers</h1>
+                <div class="header-actions">
+                    <a href="/dash" class="btn-custom" style="background-color: white; color: var(--text-dark); border: 1px solid #e0e0e0;">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </a>
+                    <a href="/worker/new" class="btn-custom btn-primary-custom">
+                        <i class="fas fa-user-plus"></i> Add New Worker
+                    </a>
+                </div>
+            </div>
+
+            <div class="workers-header">
+                <div class="workers-count">
+                    <% if (allworkers.length === 0) { %>
+                        No Workers Found
+                    <% } else { %>
+                        <%= allworkers.length %> Worker<%= allworkers.length !== 1 ? 's' : '' %>
+                    <% } %>
+                </div>
+            </div>
+
+            <ul class="worker-list">
+                <% if (allworkers.length === 0) { %>
+                    <div class="empty-state">
+                        <i class="fas fa-hard-hat"></i>
+                        <h3>No workers found</h3>
+                        <p>Click "Add New Worker" to create your first worker</p>
+                    </div>
+                <% } else { %>
+                    <% allworkers.forEach(worker => { %>
+                        <li class="worker-item">
+                            <div class="worker-details">
+                                <div class="worker-info">
+                                    <div class="worker-avatar">
+                                        <%= worker.name ? worker.name.charAt(0).toUpperCase() : 'W' %>
+                                    </div>
+                                    <div class="worker-main-info">
+                                        <h3 class="worker-name">
+                                            <a href="/worker/<%= worker._id %>"><%= worker.name || 'Unnamed Worker' %></a>
+                                        </h3>
+                                        <div class="worker-meta">
+                                            <% if (worker.contact) { %>
+                                                <div class="worker-meta-item">
+                                                    <i class="fas fa-phone"></i>
+                                                    <%= worker.contact %>
+                                                </div>
+                                            <% } %>
+                                            <% if (worker.role) { %>
+                                                <div class="worker-meta-item">
+                                                    <i class="fas fa-briefcase"></i>
+                                                    <%= worker.role %>
+                                                </div>
+                                            <% } %>
+                                            <% if (worker.salary) { %>
+                                                <div class="worker-meta-item">
+                                                    <i class="fas fa-rupee-sign"></i>
+                                                    ₹<%= worker.salary %>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="worker-actions">
+                                    <a href="/worker/<%= worker._id %>" class="action-btn">
+                                        <i class="fas fa-eye"></i> View Details
+                                    </a>
+                                    <a href="/worker/<%= worker._id %>/edit" class="action-btn">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    <% }) %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

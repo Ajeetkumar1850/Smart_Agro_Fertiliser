@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Smart Agro Fertilizer System for inventory, billing, analytics, and efficient farm management." />
+  <title>Agro Fertilizer System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-dark: #1b5e20;
+      --primary-light: #a5d6a7;
+      --accent: #ff9800;
+      --whatsapp: #25D366;
+      --telegram: #0088cc;
+      --text-dark: #212121;
+      --text-muted: #616161;
+      --bg-light: #f8f9fa;
+      --card-bg: #ffffff;
+      --border-radius: 16px;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+    
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    header h1 i { 
+      color: var(--primary-light); 
+    }
+    
+    nav { 
+      display: flex; 
+      gap: 2rem; 
+    }
+    
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    
+    nav a:hover { 
+      color: var(--primary-light); 
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary-light);
+      bottom: 0;
+      left: 0;
+      transition: var(--transition);
+    }
+    
+    nav a:hover::after { 
+      width: 100%; 
+    }
+    
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .hamburger:hover { 
+      color: var(--primary-light); 
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: white;
+      margin-top: 0;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      animation: fadeInUp 1s ease;
+    }
+    
+    .hero h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+      opacity: 0.9;
+    }
+    
+    .buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: var(--transition);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(46, 125, 50, 0.3);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid #fff;
+    }
+    
+    .btn-outline:hover {
+      background: #fff;
+      color: var(--primary);
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      position: relative;
+      display: inline-block;
+    }
+    
+    section h2::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      bottom: -10px;
+      left: 20%;
+      border-radius: 2px;
+    }
+    
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Features Section */
+    .features {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 100%);
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    
+    .feature-card {
+      text-align: center;
+    }
+    
+    .feature-card i {
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+    
+    .feature-card p { 
+      color: var(--text-muted); 
+      line-height: 1.7;
+    }
+
+    /* Products Section */
+    .products {
+      background: var(--card-bg);
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .product-card {
+      text-align: center;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    .product-img {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+    
+    .product-info { 
+      padding: 1.5rem; 
+    }
+    
+    .product-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+    }
+    
+    .product-info p {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .product-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    /* Bots Section */
+    .bots-section {
+      background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 100%);
+    }
+    
+    .bots-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .bot-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .bot-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    
+    .bot-header {
+      padding: 2rem;
+      text-align: center;
+      color: white;
+    }
+    
+    .whatsapp-header {
+      background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+    }
+    
+    .telegram-header {
+      background: linear-gradient(135deg, var(--telegram), #005f8c);
+    }
+    
+    .bot-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .bot-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .bot-subtitle {
+      opacity: 0.9;
+      font-size: 1rem;
+    }
+    
+    .bot-features {
+      padding: 2rem;
+    }
+    
+    .bot-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+    
+    .bot-feature i {
+      font-size: 1.2rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+    
+    .whatsapp-feature i {
+      color: var(--whatsapp);
+    }
+    
+    .telegram-feature i {
+      color: var(--telegram);
+    }
+    
+    .bot-feature-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+      color: var(--text-dark);
+    }
+    
+    .bot-feature-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    
+    .bot-actions {
+      padding: 1.5rem 2rem 2rem;
+      text-align: center;
+    }
+    
+    .bot-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    
+    .whatsapp-btn {
+      background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+      color: white;
+    }
+    
+    .telegram-btn {
+      background: linear-gradient(135deg, var(--telegram), #005f8c);
+      color: white;
+    }
+    
+    .bot-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .testimonial-card {
+      text-align: left;
+      position: relative;
+      padding: 2rem;
+    }
+    
+    .testimonial-card i {
+      color: #ffc107;
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .author-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-light);
+    }
+    
+    .author-info h4 {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+    }
+    
+    .author-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 4rem 2rem 2rem;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-grid h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .footer-grid h3::after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 2px;
+      background: var(--primary-light);
+      bottom: -8px;
+      left: 0;
+    }
+    
+    .footer-grid p {
+      color: #e0e0e0;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    
+    .footer-grid ul { 
+      list-style: none; 
+      padding: 0; 
+    }
+    
+    .footer-grid ul li { 
+      margin: 1rem 0; 
+    }
+    
+    .footer-grid ul li a {
+      color: #e0e0e0;
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+    }
+    
+    .footer-grid ul li a:hover {
+      color: var(--primary-light);
+      padding-left: 5px;
+    }
+    
+    .socials {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .socials a {
+      color: #fff;
+      margin: 0 1rem;
+      font-size: 1.5rem;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    
+    .socials a:hover {
+      color: var(--primary-light);
+      transform: translateY(-5px);
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 2rem;
+      color: #bdbdbd;
+      font-size: 0.9rem;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    
+    .whatsapp:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Telegram Float */
+    .telegram {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      background: linear-gradient(135deg, var(--telegram), #005f8c);
+      color: #fff;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    
+    .telegram:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 20px rgba(0, 136, 204, 0.4);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Stats Section */
+    .stats {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 4rem 2rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary-light);
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header { 
+        padding: 1rem; 
+      }
+      
+      nav {
+        display: none;
+        flex-direction: column;
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 250px;
+        padding: 1rem;
+        border-radius: 0 0 0 var(--border-radius);
+        box-shadow: -2px 2px 10px rgba(0,0,0,0.2);
+      }
+      
+      nav.active { 
+        display: flex; 
+      }
+      
+      .hamburger { 
+        display: block; 
+      }
+      
+      .hero h2 { 
+        font-size: 2.5rem; 
+      }
+      
+      .hero p { 
+        font-size: 1.1rem; 
+      }
+      
+      section { 
+        padding: 4rem 1rem; 
+      }
+      
+      section h2 { 
+        font-size: 2rem; 
+      }
+      
+      .buttons { 
+        flex-direction: column; 
+        gap: 1rem; 
+      }
+      
+      .btn { 
+        width: 100%; 
+        justify-content: center;
+      }
+      
+      .feature-grid,
+      .product-grid,
+      .testimonial-grid,
+      .bots-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .telegram {
+        bottom: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="fas fa-seedling"></i> Agro Fertilizer</h1>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <nav id="navbar">
+      <a href="#features">Features</a>
+      <a href="#products">Products</a>
+      <a href="#bots">Smart Bots</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+  <div class="hero-content">
+    <% if (!user) { %>
+      <h2>Smart Agro Fertilizer System</h2>
+      <p>Revolutionize your farming operations with our comprehensive fertilizer management solution. Track inventory, analyze usage, and optimize your farm's productivity with cutting-edge technology.</p>
+      <div class="buttons">
+        <a href="/auth/google" class="btn">
+          <i class="fab fa-google"></i> Sign in as Admin
+        </a>
+        <a href="/auth/google" class="btn btn-outline">
+          <i class="fab fa-google"></i> Sign in as User
+        </a>
+      </div>
+    <% } else { %>
+      <h2>Welcome back, <%= user.displayName %>!</h2>
+      <p>Continue managing your farming operations with our comprehensive fertilizer management solution. You're signed in as <strong><%= user.role === 'admin' ? 'Administrator' : 'User' %></strong>.</p>
+      <div class="buttons">
+        <a href="<%= user.role === 'admin' ? '/admin/dashboard' : '/user/dashboard' %>" class="btn">
+          Go to <%= user.role === 'admin' ? 'Admin' : 'User' %> Dashboard
+        </a>
+        <a href="/auth/logout" class="btn btn-outline">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+      </div>
+    <% } %>
+  </div>
+</section>
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">5000+</div>
+        <div class="stat-label">Happy Farmers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">95%</div>
+        <div class="stat-label">Success Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">Bot Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2>Our Powerful Features</h2>
+    <p class="section-subtitle">Everything you need to manage your fertilizer operations efficiently</p>
+    <div class="feature-grid">
+      <div class="card feature-card">
+        <i class="fas fa-boxes"></i>
+        <h3>Smart Inventory</h3>
+        <p>Real-time tracking of fertilizer stocks with automated alerts and expiry management for maximum efficiency.</p>
+      </div>
+      <div class="card feature-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Advanced Analytics</h3>
+        <p>Visual dashboards with usage patterns, yield predictions, and actionable insights for better decisions.</p>
+      </div>
+      <div class="card feature-card">
+        <i class="fas fa-file-invoice-dollar"></i>
+        <h3>Smart Billing</h3>
+        <p>Automated, error-free billing and GST-ready invoicing to streamline your sales process.</p>
+      </div>
+      <div class="card feature-card">
+        <i class="fas fa-robot"></i>
+        <h3>AI Bots Support</h3>
+        <p>24/7 assistance through WhatsApp & Telegram bots for instant support and recommendations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products" id="products">
+    <h2>Featured Products</h2>
+    <p class="section-subtitle">High-quality fertilizers for optimal crop growth and yield</p>
+    
+    <div class="product-grid">
+      <% products.forEach(product => { %>
+        <div class="card product-card">
+          <img src="<%= product.image.url %>" alt="<%= product.name %>" class="product-img">
+          <div class="product-info">
+            <h3><%= product.name %></h3>
+            <p><%= product.description %></p>
+            <div class="product-price">₹<%= product.price %></div>
+            <form action="/cart/add/<%= product._id %>" method="POST">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="btn" style="width: 100%;">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Smart Bots Section -->
+  <section class="bots-section" id="bots">
+    <h2>Smart Assistant Bots</h2>
+    <p class="section-subtitle">Get instant support and recommendations through our AI-powered bots</p>
+    
+    <div class="bots-container">
+      <!-- WhatsApp Bot Card -->
+      <div class="bot-card">
+        <div class="bot-header whatsapp-header">
+          <div class="bot-icon">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <h3 class="bot-title">WhatsApp Assistant</h3>
+          <p class="bot-subtitle">24/7 Support on Your Favorite Platform</p>
+        </div>
+        
+        <div class="bot-features">
+          <div class="bot-feature whatsapp-feature">
+            <i class="fas fa-comment-dots"></i>
+            <div class="bot-feature-content">
+              <h4>Instant Chat Support</h4>
+              <p>Get immediate answers to your queries about fertilizers, usage, and crop recommendations</p>
+            </div>
+          </div>
+          
+          <div class="bot-feature whatsapp-feature">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="bot-feature-content">
+              <h4>Order Management</h4>
+              <p>Place orders, track deliveries, and manage your purchases directly through WhatsApp</p>
+            </div>
+          </div>
+          
+          <div class="bot-feature whatsapp-feature">
+            <i class="fas fa-robot"></i>
+            <div class="bot-feature-content">
+              <h4>Smart Recommendations</h4>
+              <p>Receive personalized fertilizer suggestions based on your crop type and soil conditions</p>
+            </div>
+          </div>
+          
+          <div class="bot-feature whatsapp-feature">
+            <i class="fas fa-bell"></i>
+            <div class="bot-feature-content">
+              <h4>Real-time Alerts</h4>
+              <p>Get notifications about stock availability, price drops, and special offers</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bot-actions">
+          <a href="https://wa.me/919876543210" class="bot-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Start Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Telegram Bot Card -->
+      <div class="bot-card">
+        <div class="bot-header telegram-header">
+          <div class="bot-icon">
+            <i class="fab fa-telegram"></i>
+          </div>
+          <h3 class="bot-title">Telegram Assistant</h3>
+          <p class="bot-subtitle">Advanced Features for Power Users</p>
+        </div>
+        
+        <div class="bot-features">
+          <div class="bot-feature telegram-feature">
+            <i class="fas fa-wind"></i>
+            <div class="bot-feature-content">
+              <h4>Weather Alerts</h4>
+              <p>Receive weather forecasts and farming alerts based on your location and crop cycle</p>
+            </div>
+          </div>
+          
+          <div class="bot-feature telegram-feature">
+            <i class="fas fa-chart-bar"></i>
+            <div class="bot-feature-content">
+              <h4>Market Insights</h4>
+              <p>Get real-time market prices, demand trends, and selling recommendations</p>
+            </div>
+          </div>
+          
+          <div class="bot-feature telegram-feature">
+            <i class="fas fa-calendar-alt"></i>
+            <div class="bot-feature-content">
+              <h4>Crop Calendar</h4>
+              <p>Automated crop scheduling and fertilizer application reminders</p>
+            </div>
+          </div>
+          
+          <div class="bot-feature telegram-feature">
+            <i class="fas fa-file-pdf"></i>
+            <div class="bot-feature-content">
+              <h4>Document Generation</h4>
+              <p>Generate invoices, reports, and farming plans directly in the chat</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bot-actions">
+          <a href="https://t.me/your_agro_bot" class="bot-btn telegram-btn" target="_blank">
+            <i class="fab fa-telegram"></i> Start Using Telegram Bot
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <h2>What Farmers Say</h2>
+    <p class="section-subtitle">Trusted by thousands of farmers across India</p>
+    <div class="testimonial-grid">
+      <div class="card testimonial-card">
+        <div>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">"The WhatsApp bot is amazing! I get instant answers to all my fertilizer questions and can place orders without calling anyone. It's like having an agronomist in my pocket!"</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Ramesh Patel" class="author-img">
+          <div class="author-info">
+            <h4>Ramesh Patel</h4>
+            <p>Wheat Farmer, Punjab</p>
+          </div>
+        </div>
+      </div>
+      <div class="card testimonial-card">
+        <div>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <p class="testimonial-text">"The Telegram bot's weather alerts saved my crops during unexpected rains. The market insights helped me get better prices for my produce. Technology truly helps farmers!"</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Geeta Sharma" class="author-img">
+          <div class="author-info">
+            <h4>Geeta Sharma</h4>
+            <p>Vegetable Farmer, Haryana</p>
+          </div>
+        </div>
+      </div>
+      <div class="card testimonial-card">
+        <div>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="testimonial-text">"Both bots are incredibly useful. WhatsApp for quick queries and Telegram for detailed planning. The crop calendar feature helps me stay organized throughout the season."</p>
+        <div class="testimonial-author">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Amit Singh" class="author-img">
+          <div class="author-info">
+            <h4>Amit Singh</h4>
+            <p>Cooperative Manager, UP</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <h3><i class="fas fa-seedling"></i> Agro Fertilizer</h3>
+        <p>Smart solutions for modern farming. Helping farmers increase productivity through innovative technology and data-driven insights.</p>
+        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> info@agrofertilizer.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> FarmTech Park, Delhi NCR</p>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#bots">Smart Bots</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Bot Support</h3>
+        <ul>
+          <li><a href="https://wa.me/919876543210" target="_blank">WhatsApp Assistant</a></li>
+          <li><a href="https://t.me/your_agro_bot" target="_blank">Telegram Assistant</a></li>
+          <li><a href="#">Bot User Guide</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="socials">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 Agro Fertilizer System. All Rights Reserved. | Designed for Indian Farmers</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/919876543210" class="whatsapp" target="_blank" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Telegram Float -->
+  <a href="https://t.me/crop_advisor_bot" class="telegram" target="_blank" title="Start Telegram Bot">
+    <i class="fab fa-telegram"></i>
+  </a>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('active');
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a, .footer-grid a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            // Close mobile menu after click
+            document.getElementById('navbar').classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // Add scroll animation
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = 'linear-gradient(135deg, var(--primary-dark), var(--primary))';
+        header.style.backdropFilter = 'blur(10px)';
+      } else {
+        header.style.background = 'linear-gradient(135deg, var(--primary-dark), var(--primary))';
+      }
+    });
+
+    // Add animation to bot cards when they come into view
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe bot cards
+    document.querySelectorAll('.bot-card').forEach(card => {
+      card.style.opacity = '0';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
