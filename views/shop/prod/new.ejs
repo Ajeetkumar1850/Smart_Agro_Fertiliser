@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Product | AGRO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-dark: #1b5e20;
+      --primary-light: #a5d6a7;
+      --accent: #ff9800;
+      --text-dark: #212121;
+      --text-muted: #616161;
+      --bg-light: #f8f9fa;
+      --card-bg: #ffffff;
+      --border-radius: 16px;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-dark);
+    }
+
+    .form-container {
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      max-width: 500px;
+      width: 90%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      color: var(--primary-dark);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    h1 i {
+      color: var(--primary);
+    }
+
+    .form-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    label i {
+      color: var(--primary);
+      width: 20px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="url"] {
+      width: 100%;
+      padding: 0.8rem 1rem 0.8rem 2.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: #fafafa;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="url"]:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+      background-color: white;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      z-index: 1;
+    }
+
+    .image-preview {
+      margin-top: 1rem;
+      text-align: center;
+      display: none;
+    }
+
+    .preview-label {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+      color: var(--text-muted);
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e0e0e0;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      flex: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: white;
+      color: var(--text-dark);
+      border: 1px solid #e0e0e0;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f5f5f5;
+      transform: translateY(-2px);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .form-footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .form-footer a:hover {
+      color: var(--primary-dark);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .form-container {
+        padding: 1.5rem;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h1><i class="fas fa-plus-circle"></i> Add New Product</h1>
+      <p class="form-subtitle">Fill in the details to add a new product to your inventory</p>
+    </div>
+
+    <form method="POST" action="/prod">
+      <div class="form-group">
+        <label for="name"><i class="fas fa-tag"></i> Product Name</label>
+        <div class="input-wrapper">
+          <i class="fas fa-pencil-alt input-icon"></i>
+          <input type="text" id="name" name="product[name]" required placeholder="Enter product name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="price"><i class="fas fa-indian-rupee-sign"></i> Price</label>
+        <div class="input-wrapper">
+          <i class="fas fa-rupee-sign input-icon"></i>
+          <input type="number" id="price" name="product[price]" required placeholder="Enter price" min="0" step="0.01">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="stock_quantity"><i class="fas fa-boxes"></i> Stock Quantity</label>
+        <div class="input-wrapper">
+          <i class="fas fa-warehouse input-icon"></i>
+          <input type="number" id="stock_quantity" name="product[stock_quantity]" placeholder="Enter stock quantity" min="0" value="0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="category"><i class="fas fa-list"></i> Category</label>
+        <div class="input-wrapper">
+          <i class="fas fa-folder input-icon"></i>
+          <input type="text" id="category" name="product[category]" placeholder="e.g., Fertilizer, Seeds, Tools" value="General">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description"><i class="fas fa-align-left"></i> Description</label>
+        <div class="input-wrapper">
+          <i class="fas fa-file-alt input-icon"></i>
+          <input type="text" id="description" name="product[description]" required placeholder="Enter product description">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image"><i class="fas fa-image"></i> Image URL</label>
+        <div class="input-wrapper">
+          <i class="fas fa-link input-icon"></i>
+          <input type="url" id="image" name="product[image]" required placeholder="https://example.com/image.jpg">
+        </div>
+        
+        <div class="image-preview" id="imagePreview">
+          <span class="preview-label">Image Preview:</span>
+          <img src="" alt="Product image preview" id="previewImage">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-plus"></i> Add Product
+        </button>
+        <a href="/prod" class="btn btn-secondary">
+          <i class="fas fa-times"></i> Cancel
+        </a>
+      </div>
+    </form>
+
+    <div class="form-footer">
+      <a href="/prod">
+        <i class="fas fa-arrow-left"></i> Back to Products List
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // Update image preview when URL changes
+    document.getElementById('image').addEventListener('input', function() {
+      const previewContainer = document.getElementById('imagePreview');
+      const previewImage = document.getElementById('previewImage');
+      
+      if (this.value) {
+        previewImage.src = this.value;
+        previewContainer.style.display = 'block';
+        
+        // Check if image loads successfully
+        previewImage.onload = function() {
+          previewContainer.style.display = 'block';
+        };
+        
+        previewImage.onerror = function() {
+          previewContainer.style.display = 'none';
+        };
+      } else {
+        previewContainer.style.display = 'none';
+      }
+    });
+
+    // Form validation
+    document.querySelector('form').addEventListener('submit', function(e) {
+      const price = document.getElementById('price').value;
+      if (price < 0) {
+        e.preventDefault();
+        alert('Price cannot be negative');
+        document.getElementById('price').focus();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice - <%= order.billNumber %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+    }
+    .invoice-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid #2e7d32;
+    }
+    .company-info h1 {
+      color: #2e7d32;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .company-info p {
+      color: #666;
+      margin: 0.3rem 0;
+      font-size: 0.9rem;
+    }
+    .invoice-meta {
+      text-align: right;
+    }
+    .invoice-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
+    }
+    .invoice-number {
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 0.3rem;
+    }
+    .invoice-date {
+      color: #999;
+      font-size: 0.9rem;
+    }
+    .bill-to-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .bill-to {
+      background: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border-left: 4px solid #2e7d32;
+    }
+    .bill-to h3 {
+      color: #2e7d32;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    .bill-to p {
+      margin: 0.5rem 0;
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .bill-to strong {
+      color: #333;
+    }
+    .items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+    }
+    .items-table thead {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: white;
+    }
+    .items-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    .items-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .items-table tbody tr:hover {
+      background: #f9f9f9;
+    }
+    .text-right {
+      text-align: right;
+    }
+    .totals-section {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 3rem;
+    }
+    .totals {
+      width: 300px;
+    }
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .total-row.grand-total {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+    .footer-section {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 2px solid #eee;
+      color: #666;
+    }
+    .footer-section p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: #e3f2fd;
+      color: #1976d2;
+      margin-top: 0.5rem;
+    }
+    .print-btn {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(46, 125, 50, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+    }
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .invoice-container {
+        box-shadow: none;
+        padding: 0;
+      }
+      .print-btn {
+        display: none;
+      }
+    }
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      .invoice-container {
+        padding: 1.5rem;
+      }
+      .invoice-header {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .invoice-meta {
+        text-align: left;
+      }
+      .bill-to-section {
+        grid-template-columns: 1fr;
+      }
+      .print-btn {
+        position: static;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">
+    <i class="fas fa-print"></i> Print Invoice
+  </button>
+
+  <div class="invoice-container">
+    <div class="invoice-header">
+      <div class="company-info">
+        <h1><i class="fas fa-leaf"></i> AgroConnect Pro</h1>
+        <p><i class="fas fa-map-marker-alt"></i> Sasaram, Bihar, India</p>
+        <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+        <p><i class="fas fa-envelope"></i> support@agroconnect.pro</p>
+      </div>
+      <div class="invoice-meta">
+        <div class="invoice-title">INVOICE</div>
+        <div class="invoice-number"><strong>Bill No:</strong> <%= order.billNumber %></div>
+        <div class="invoice-date">
+          <strong>Date:</strong> <%= new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+        </div>
+        <div class="status-badge">
+          <i class="fas fa-check-circle"></i> PAID
+        </div>
+      </div>
+    </div>
+
+    <div class="bill-to-section">
+      <div class="bill-to">
+        <h3><i class="fas fa-user"></i> Bill To</h3>
+        <p><strong>Name:</strong> <%= order.userName %></p>
+        <p><strong>Email:</strong> <%= order.userEmail %></p>
+        <p><strong>Phone:</strong> <%= order.phoneNumber %></p>
+      </div>
+      <div class="bill-to">
+        <h3><i class="fas fa-shipping-fast"></i> Delivery Address</h3>
+        <p><%= order.deliveryAddress %></p>
+        <% if (order.notes) { %>
+          <p style="margin-top: 1rem;"><strong>Notes:</strong> <%= order.notes %></p>
+        <% } %>
+      </div>
+    </div>
+
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="text-right">Quantity</th>
+          <th class="text-right">Unit Price</th>
+          <th class="text-right">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong><%= order.productName %></strong>
+            <% if (order.product && order.product.category) { %>
+              <br><small style="color: #666;">Category: <%= order.product.category %></small>
+            <% } %>
+          </td>
+          <td class="text-right"><%= order.quantity %></td>
+          <td class="text-right">₹<%= order.productPrice.toFixed(2) %></td>
+          <td class="text-right"><strong>₹<%= order.totalAmount.toFixed(2) %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totals-section">
+      <div class="totals">
+        <div class="total-row">
+          <span>Subtotal:</span>
+          <span>₹<%= order.totalAmount.toFixed(2) %></span>
+        </div>
+        <div class="total-row">
+          <span>Tax (0%):</span>
+          <span>₹0.00</span>
+        </div>
+        <div class="total-row">
+          <span>Delivery Charges:</span>
+          <span>₹0.00</span>
+        </div>
+        <div class="total-row grand-total">
+          <span>GRAND TOTAL:</span>
+          <span>₹<%= order.totalAmount.toFixed(2) %></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-section">
+      <p><strong>Thank you for your business!</strong></p>
+      <p>For any queries, please contact us at support@agroconnect.pro or call +91 98765 43210</p>
+      <p style="margin-top: 1.5rem; color: #999; font-size: 0.85rem;">
+        This is a computer-generated invoice and does not require a signature.
+      </p>
+      <p style="color: #999; font-size: 0.85rem;">
+        Order ID: <%= order._id.toString().slice(-8).toUpperCase() %> | 
+        Generated on: <%= new Date().toLocaleString('en-US') %>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGRO Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #a5d6a7;
+            --accent: #ff9800;
+            --text-dark: #212121;
+            --text-muted: #616161;
+            --bg-light: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: var(--primary-dark);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1 i {
+            color: var(--primary);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary);
+            border: 1px solid var(--primary-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .search-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 25px;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        .products-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .products-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .products-count {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .products-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .product-item {
+            padding: 18px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-item:hover {
+            background-color: #f9f9f9;
+            transform: translateX(5px);
+        }
+
+        .product-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .product-arrow {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .product-item:hover .product-arrow {
+            transform: translateX(5px);
+            color: var(--primary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--primary-light);
+        }
+
+        .empty-state h3 {
+            margin: 0 0 10px;
+            font-weight: 600;
+        }
+
+        .empty-state p {
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .button-group {
+                width: 100%;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                justify-content: center;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-seedling"></i> AGRO Products</h1>
+            <div class="button-group">
+                <a href="/dash" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+                <a href="/prod/new" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add New Product
+                </a>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <form method="GET" action="/prod" class="search-form">
+                <input 
+                    type="text" 
+                    name="search" 
+                    placeholder="Search products by name..." 
+                    value="<%= typeof search !== 'undefined' ? search : '' %>" 
+                    class="search-input">
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+        </div>
+
+        <div class="products-container">
+            <div class="products-header">
+                <div class="products-count">
+                    <% if (allproducts.length === 0) { %>
+                        No Products Found
+                    <% } else { %>
+                        <%= allproducts.length %> Product<%= allproducts.length !== 1 ? 's' : '' %>
+                    <% } %>
+                </div>
+            </div>
+
+            <ul class="products-list">
+                <% if (allproducts.length === 0) { %>
+                    <div class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <h3>No products found</h3>
+                        <p>Click "Add New Product" to create your first product</p>
+                    </div>
+                <% } else { %>
+                    <% for (let product of allproducts) { %>
+                        <li class="product-item">
+                            <a href="/prod/<%= product._id %>" class="product-link">
+                                <i class="fas fa-leaf product-icon"></i>
+                                <%= product.name %>
+                            </a>
+                            <i class="fas fa-chevron-right product-arrow"></i>
+                        </li>
+                    <% } %>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const msg = urlParams.get("msg");
+
+        if (msg === "product") {
+            const speech = new SpeechSynthesisUtterance("Naya product joda gaya hai");
+            speech.lang = "en-IN";
+            speech.rate = 1;
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>

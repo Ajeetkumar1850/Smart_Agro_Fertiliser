@@ -1,0 +1,21 @@
+node_modules/
+.env
+.wwebjs_auth/
+*.log
+.DS_Store
+.vercel
+temp/
+.vscode/
+
+# Documentation and guide files
+Guide-Implementation/
+interview/
+*.txt
+*.md
+!README.md
+
+# Unnecessary files
+agro_project_related_que.txt
+deploy-checklist.txt
+DEPLOY_NOW.txt
+create-admin.js

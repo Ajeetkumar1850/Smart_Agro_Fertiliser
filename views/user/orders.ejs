@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders - AgroConnect Pro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+    }
+    .header {
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: white;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .header h1 {
+      font-size: 1.5rem;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    .page-header {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .page-header h2 {
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
+    }
+    .orders-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    .order-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-left: 4px solid #2e7d32;
+    }
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .order-id {
+      font-weight: 600;
+      color: #333;
+    }
+    .order-status {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .status-pending {
+      background: #fff3e0;
+      color: #f57c00;
+    }
+    .status-approved {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+    .status-rejected {
+      background: #ffebee;
+      color: #c62828;
+    }
+    .status-completed {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+    .order-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .detail-label {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 0.3rem;
+    }
+    .detail-value {
+      font-weight: 600;
+      color: #333;
+    }
+    .order-date {
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+    .no-orders {
+      text-align: center;
+      padding: 3rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .no-orders i {
+      font-size: 4rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1><i class="fas fa-leaf"></i> AgroConnect Pro</h1>
+    <div class="header-right">
+      <div class="nav-links">
+        <a href="/user/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/user/products"><i class="fas fa-box"></i> Products</a>
+        <a href="/orders/user/my-orders"><i class="fas fa-shopping-bag"></i> Orders</a>
+        <a href="/user/profile"><i class="fas fa-user"></i> Profile</a>
+      </div>
+      <a href="/auth/logout" style="color: white; text-decoration: none;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h2><i class="fas fa-shopping-bag"></i> My Orders</h2>
+      <p>Track and manage your orders</p>
+    </div>
+
+    <% if (orders && orders.length > 0) { %>
+      <div class="orders-grid">
+        <% orders.forEach(order => { %>
+          <div class="order-card">
+            <div class="order-header">
+              <div class="order-id">
+                Order #<%= order._id.toString().slice(-8).toUpperCase() %>
+              </div>
+              <div>
+                <% if (order.status === 'pending') { %>
+                  <span class="order-status status-pending">
+                    <i class="fas fa-clock"></i> Pending
+                  </span>
+                <% } else if (order.status === 'approved') { %>
+                  <span class="order-status status-approved">
+                    <i class="fas fa-check-circle"></i> Approved
+                  </span>
+                <% } else if (order.status === 'rejected') { %>
+                  <span class="order-status status-rejected">
+                    <i class="fas fa-times-circle"></i> Rejected
+                  </span>
+                <% } else if (order.status === 'completed') { %>
+                  <span class="order-status status-completed">
+                    <i class="fas fa-check-double"></i> Completed
+                  </span>
+                <% } %>
+              </div>
+            </div>
+
+            <div class="order-details">
+              <div class="detail-item">
+                <span class="detail-label">Product</span>
+                <span class="detail-value"><%= order.productName %></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Quantity</span>
+                <span class="detail-value"><%= order.quantity %> units</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Price</span>
+                <span class="detail-value">₹<%= order.productPrice %></span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Total Amount</span>
+                <span class="detail-value" style="color: #2e7d32; font-size: 1.1rem;">₹<%= order.totalAmount %></span>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <span class="detail-label">Delivery Address</span>
+              <span class="detail-value"><%= order.deliveryAddress %></span>
+            </div>
+
+            <div class="order-date">
+              <i class="fas fa-calendar"></i> Ordered on <%= new Date(order.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+            </div>
+
+            <% if (order.billGenerated) { %>
+              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                <span style="color: #2e7d32; font-weight: 600;">
+                  <i class="fas fa-file-invoice"></i> Bill Generated: <%= order.billNumber %>
+                </span>
+              </div>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <div class="no-orders">
+        <i class="fas fa-shopping-bag"></i>
+        <h3>No Orders Yet</h3>
+        <p style="color: #666; margin-bottom: 1.5rem;">You haven't placed any orders yet</p>
+        <a href="/user/products" class="btn">
+          <i class="fas fa-shopping-cart"></i> Browse Products
+        </a>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
