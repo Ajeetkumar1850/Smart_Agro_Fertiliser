@@ -2,7 +2,6 @@
 
 > Modern Agricultural Business Management System with AI-Powered Advisory, E-Commerce, and Multi-Channel Customer Engagement
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://agroconnectpro.vercel.app)
 [![License](https://img.shields.io/badge/license-ISC-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
 [![MongoDB](https://img.shields.io/badge/mongodb-8.18.0-green)](https://www.mongodb.com)
@@ -27,15 +26,7 @@
 
 ---
 
-## 🚀 Live Demo
 
-**Production URL:** [https://agroconnectpro.vercel.app](https://agroconnectpro.vercel.app)
-
-### Test Accounts
-- **Admin Access:** Sign in with Google (whitelisted emails)
-- **User Access:** Register with any email or use Google OAuth
-
----
 
 ## ✨ Features
 
