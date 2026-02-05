@@ -7,7 +7,6 @@
 [![MongoDB](https://img.shields.io/badge/mongodb-8.18.0-green)](https://www.mongodb.com)
 
 ---
-
 ## 📋 Overview
 
 **AgroConnect Pro** is a comprehensive digital platform designed for agricultural retailers and farmers, combining inventory management, e-commerce, customer relationship tools, and AI-powered crop advisory services. The platform features a mobile-responsive web interface, intelligent chatbots, and automated email notifications.
