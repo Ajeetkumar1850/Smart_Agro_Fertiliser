@@ -1,158 +1,440 @@
-# 🌾 AgroConnect Pro - Digital Agriculture Retail Management Platform
+# 🌾 AgroConnect Pro - Complete Farm Management Platform
 
-> Empowering Agriculture Retailers with AI-Driven Insights & Omnichannel Customer Engagement
+> Modern Agricultural Business Management System with AI-Powered Advisory, E-Commerce, and Multi-Channel Customer Engagement
 
----
-
-## 📋 Project Overview
-
-**AgroConnect Pro** is an enterprise-grade retail management system designed for agricultural input dealers, combining inventory management, customer relationship tools, and AI-powered crop advisory services delivered through Telegram and WhatsApp bots.
-
-### Key Features:
-- 🏪 **Retail Operations** - Products, Customers, Workers, Stock, Dashboard
-- 🤖 **AI Crop Advisory** - Recommendations, Disease Detection, Weather Alerts
-- 💬 **Omnichannel Bots** - Telegram (Active), WhatsApp (Ready)
-- 📊 **Business Intelligence** - Real-time analytics and insights
-- 🌐 **Bilingual Support** - English & Hindi for rural accessibility
+[![Live Demo](https://img.shields.io/badge/demo-live-success)](https://agroconnectpro.vercel.app)
+[![License](https://img.shields.io/badge/license-ISC-blue.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
+[![MongoDB](https://img.shields.io/badge/mongodb-8.18.0-green)](https://www.mongodb.com)
 
 ---
 
-## 🚀 Quick Start
+## 📋 Overview
 
-### Prerequisites
-- Node.js v18+
-- MongoDB
-- Telegram Bot Token
-- Google Gemini API Key
-- OpenWeatherMap API Key
+**AgroConnect Pro** is a comprehensive digital platform designed for agricultural retailers and farmers, combining inventory management, e-commerce, customer relationship tools, and AI-powered crop advisory services. The platform features a mobile-responsive web interface, intelligent chatbots, and automated email notifications.
 
-### Installation
+### 🎯 Key Highlights
 
-```bash
-# Clone repository
-git clone <repository-url>
-cd CropAdvisor&ShopManegement
+- 🏪 **Complete Retail Management** - Products, Customers, Workers, Stock, Orders
+- 🛒 **E-Commerce Platform** - Online ordering with email confirmations and PDF invoices
+- 🤖 **AI Crop Advisory** - Powered by Google Gemini for crop recommendations
+- 💬 **Multi-Channel Bots** - Telegram & WhatsApp integration
+- 📧 **Email Automation** - Order confirmations, password resets, invoices
+- 📱 **Mobile-First Design** - Fully responsive UI for all devices
+- 🔐 **Secure Authentication** - Google OAuth 2.0 + Local auth with password reset
+- ⭐ **Review System** - Customer feedback and testimonials
+- 📊 **Analytics Dashboard** - Real-time business metrics and insights
 
-# Install dependencies
-npm install
+---
 
-# Configure environment variables
-cp .env.example .env
-# Edit .env with your API keys
+## 🚀 Live Demo
 
-# Start MongoDB
-mongod
+**Production URL:** [https://agroconnectpro.vercel.app](https://agroconnectpro.vercel.app)
 
-# Run application
-node app.js
-```
+### Test Accounts
+- **Admin Access:** Sign in with Google (whitelisted emails)
+- **User Access:** Register with any email or use Google OAuth
 
-### Access Points
-- **Web Dashboard:** http://localhost:8080
-- **Products:** http://localhost:8080/prod
-- **Customers:** http://localhost:8080/cust
-- **Workers:** http://localhost:8080/worker
-- **Stock:** http://localhost:8080/stock
-- **Admin Dashboard:** http://localhost:8080/dash
+---
+
+## ✨ Features
+
+### 🏬 Core Business Management
+
+#### Product Management
+- ✅ Full CRUD operations (Create, Read, Update, Delete)
+- ✅ Product categories and descriptions
+- ✅ Stock quantity tracking
+- ✅ Image management with URLs
+- ✅ Price management
+- ✅ Search and filter capabilities
+
+#### Customer Management (CRM)
+- ✅ Customer database with contact details
+- ✅ Purchase history tracking
+- ✅ Order management
+- ✅ Customer reviews and ratings
+- ✅ Unique validation (email/phone)
+
+#### Worker Management
+- ✅ Employee records and profiles
+- ✅ Role assignment
+- ✅ Contact information
+- ✅ Performance tracking ready
+
+#### Stock Management
+- ✅ Real-time inventory tracking
+- ✅ Product-wise stock levels
+- ✅ Low stock alerts
+- ✅ Stock movement history
+
+### 🛒 E-Commerce Features
+
+#### Online Ordering System
+- ✅ User-friendly product catalog
+- ✅ Shopping cart functionality
+- ✅ Order placement and tracking
+- ✅ Order status management (Pending, Confirmed, Shipped, Delivered)
+- ✅ Order history for customers
+
+#### Email Notifications
+- ✅ Order confirmation emails with details
+- ✅ PDF invoice generation and attachment
+- ✅ Password reset emails with secure tokens
+- ✅ Professional HTML email templates
+- ✅ Automated email delivery via Nodemailer
+
+#### Billing & Invoicing
+- ✅ Automated PDF invoice generation
+- ✅ Professional invoice templates
+- ✅ Order details and pricing breakdown
+- ✅ Company branding and information
+- ✅ Email delivery of invoices
+
+### 🤖 AI & Automation
+
+#### AI Chatbot
+- ✅ Agriculture-focused AI assistant
+- ✅ Crop recommendations
+- ✅ Farming advice and tips
+- ✅ Product information
+- ✅ Powered by Google Gemini AI
+
+#### Bot Integration
+- ✅ Telegram bot for customer engagement
+- ✅ WhatsApp bot (ready for activation)
+- ✅ Automated responses
+- ✅ Product catalog access
+- ✅ Order status updates
+
+### 🔐 Authentication & Security
+
+#### Multi-Auth System
+- ✅ Google OAuth 2.0 integration
+- ✅ Local authentication with bcrypt
+- ✅ Password reset functionality
+- ✅ Secure token-based password recovery
+- ✅ Session management
+- ✅ Role-based access control (Admin/User)
+
+#### Security Features
+- ✅ Password hashing with bcryptjs
+- ✅ Secure session handling
+- ✅ Environment variable protection
+- ✅ Input validation
+- ✅ CORS configuration
+- ✅ Admin whitelist system
+
+### 📱 User Experience
+
+#### Mobile-Responsive Design
+- ✅ Optimized for all screen sizes
+- ✅ Touch-friendly interface
+- ✅ Responsive navigation
+- ✅ Mobile-optimized forms
+- ✅ Adaptive layouts
+
+#### User Dashboard
+- ✅ Personal profile management
+- ✅ Order history and tracking
+- ✅ Product browsing and ordering
+- ✅ Review submission
+- ✅ Account settings
+
+#### Admin Dashboard
+- ✅ Business metrics overview
+- ✅ Customer statistics (340+ customers)
+- ✅ Product management
+- ✅ Order management
+- ✅ Review moderation
+- ✅ User management
+
+### ⭐ Review & Rating System
+- ✅ Customer review submission
+- ✅ 5-star rating system
+- ✅ Review display on homepage
+- ✅ Admin review moderation
+- ✅ Approve/reject functionality
 
 ---
 
 ## 🔧 Technology Stack
 
-**Backend:**
-- Node.js + Express.js v5.1.0
-- MongoDB + Mongoose v8.18.0
-- Passport.js (Google OAuth 2.0)
+### Backend
+- **Runtime:** Node.js v18+
+- **Framework:** Express.js v5.1.0
+- **Database:** MongoDB with Mongoose v8.18.0
+- **Authentication:** Passport.js (Google OAuth 2.0 + Local)
+- **Session:** Express-session
+- **Password:** Bcryptjs v3.0.3
 
-**AI & Automation:**
-- Google Gemini 1.5 Flash (LLM & Vision)
-- OpenWeatherMap API
-- node-cron (Scheduled tasks)
+### AI & External Services
+- **AI:** Google Gemini 1.5 (@google/generative-ai v0.24.1)
+- **Email:** Nodemailer v7.0.12
+- **PDF:** PDFKit v0.17.2
+- **Bots:** node-telegram-bot-api v0.66.0, whatsapp-web.js v1.34.1
+- **Automation:** node-cron v4.2.1
 
-**Bot Frameworks:**
-- node-telegram-bot-api
-- whatsapp-web.js (Ready for activation)
+### Frontend
+- **Template Engine:** EJS v3.1.10
+- **Styling:** CSS3 with custom responsive design
+- **JavaScript:** Vanilla JS
+- **Icons:** Font Awesome 6.4.0
+- **Fonts:** Google Fonts (Poppins)
 
-**Frontend:**
-- EJS Templates
-- Vanilla JavaScript
-- CSS3
+### DevOps & Deployment
+- **Hosting:** Vercel (Serverless)
+- **Version Control:** Git & GitHub
+- **Environment:** dotenv v16.6.1
+- **Process Manager:** PM2 (for local/VPS)
 
 ---
 
 ## 📁 Project Structure
 
 ```
-├── app.js                 # Main application entry
-├── bots.js               # Telegram & WhatsApp bot logic
-├── package.json          # Dependencies
-├── .env                  # Environment variables (not in git)
+AgroConnect-Pro/
+├── api/
+│   ├── index.js              # Vercel serverless entry point
+│   ├── test-db.js            # Database connection test
+│   └── test.js               # API test endpoint
 │
 ├── config/
-│   └── passport.js       # OAuth configuration
-│
-├── models/
-│   ├── Product.js        # Product schema
-│   ├── Customer.js       # Customer schema
-│   ├── Worker.js         # Worker schema
-│   ├── Stock.js          # Stock schema
-│   ├── CropRecommendation.js
-│   └── user.js           # User authentication
-│
-├── routes/
-│   ├── product.js        # Product routes
-│   ├── customer.js       # Customer routes
-│   ├── worker.js         # Worker routes
-│   ├── stock.js          # Stock routes
-│   ├── dashboard.js      # Dashboard routes
-│   ├── auth.js           # Authentication routes
-│   ├── recommend.js      # Crop recommendation API
-│   └── cropRoutes.js     # Additional crop routes
+│   ├── email.js              # Email configuration
+│   └── passport.js           # OAuth & Local auth config
 │
 ├── controller/
-│   ├── products.js       # Product business logic
-│   ├── customers.js      # Customer business logic
-│   ├── workers.js        # Worker business logic
-│   ├── stocks.js         # Stock business logic
-│   └── dashboard.js      # Dashboard logic
+│   ├── customers.js          # Customer business logic
+│   ├── dashboard.js          # Dashboard logic
+│   ├── products.js           # Product business logic
+│   ├── stocks.js             # Stock business logic
+│   ├── users.js              # User management logic
+│   └── workers.js            # Worker business logic
+│
+├── models/
+│   ├── CropRecommendation.js # Crop advisory schema
+│   ├── Customer.js           # Customer schema
+│   ├── Order.js              # Order schema
+│   ├── PasswordReset.js      # Password reset token schema
+│   ├── Product.js            # Product schema
+│   ├── Review.js             # Review schema
+│   ├── SiteStats.js          # Site statistics schema
+│   ├── Stock.js              # Stock schema
+│   ├── user.js               # User authentication schema
+│   └── Worker.js             # Worker schema
+│
+├── routes/
+│   ├── auth.js               # Authentication routes
+│   ├── chatbot.js            # AI chatbot routes
+│   ├── cropRoutes.js         # Crop advisory routes
+│   ├── customer.js           # Customer routes
+│   ├── dashboard.js          # Dashboard routes
+│   ├── gemini.js             # Gemini AI routes
+│   ├── order.js              # Order routes
+│   ├── passwordReset.js      # Password reset routes
+│   ├── product.js            # Product routes
+│   ├── recommend.js          # Recommendation routes
+│   ├── review.js             # Review routes
+│   ├── stock.js              # Stock routes
+│   ├── userDashboard.js      # User dashboard routes
+│   └── worker.js             # Worker routes
+│
+├── services/
+│   ├── emailService.js       # Email sending service
+│   └── pdfService.js         # PDF generation service
 │
 ├── middleware/
-│   ├── auth.js           # Authentication middleware
-│   └── isLoggedIn.js     # Login check
+│   ├── auth.js               # Authentication middleware
+│   └── isLoggedIn.js         # Login check middleware
 │
-├── views/                # EJS templates
-├── public/               # Static assets
-└── init/                 # Database initialization
+├── views/
+│   ├── admin/
+│   │   ├── bill.ejs          # Invoice template
+│   │   ├── dashboard.ejs     # Admin dashboard
+│   │   ├── orders.ejs        # Order management
+│   │   └── reviews.ejs       # Review moderation
+│   ├── auth/
+│   │   ├── forgot-password.ejs
+│   │   ├── login.ejs
+│   │   ├── register.ejs
+│   │   └── reset-password.ejs
+│   ├── user/
+│   │   ├── dashboard.ejs     # User dashboard
+│   │   ├── orders.ejs        # User orders
+│   │   ├── products.ejs      # Product catalog
+│   │   └── profile.ejs       # User profile
+│   ├── shop/                 # Shop management views
+│   ├── includes/             # Reusable components
+│   ├── layouts/              # Layout templates
+│   └── home.ejs              # Landing page
+│
+├── public/
+│   └── css/
+│       └── style.css         # Custom styles
+│
+├── init/
+│   ├── add-products.js       # Product seeder
+│   ├── data.js               # Sample data
+│   └── initdb.js             # Database initialization
+│
+├── app.js                    # Main application entry
+├── bots.js                   # Bot logic (Telegram/WhatsApp)
+├── package.json              # Dependencies
+├── vercel.json               # Vercel configuration
+├── .gitignore                # Git ignore rules
+├── .vercelignore             # Vercel ignore rules
+└── README.md                 # This file
 ```
 
 ---
 
-## 🔐 Environment Variables
+## 🚀 Getting Started
 
-Create `.env` file with:
+### Prerequisites
+
+- Node.js v18 or higher
+- MongoDB (local or Atlas)
+- Gmail account (for email service)
+- Google Cloud Console account (for OAuth)
+- Gemini API key (for AI features)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/Ajeetkumar1850/Smart_Agro_Fertiliser.git
+cd Smart_Agro_Fertiliser
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Configure environment variables**
+
+Create a `.env` file in the root directory:
 
 ```env
-# Server
+# Server Configuration
 PORT=8080
+NODE_ENV=development
 
 # Database
 MONGO_URL=mongodb://127.0.0.1:27017/AGRO_MANAGEMENT
+# For production: mongodb+srv://username:password@cluster.mongodb.net/AGRO_MANAGEMENT
 
-# Google OAuth
+# Google OAuth 2.0
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_CALLBACK_URL=http://localhost:8080/auth/google/callback
+
+# Email Service (Gmail)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_specific_password
 
 # AI Services
 GEMINI_API_KEY=your_gemini_api_key
 
-# Weather API
-WEATHER_API_KEY=your_openweathermap_key
-
-# Telegram Bot
+# Telegram Bot (Optional)
 TELEGRAM_TOKEN=your_telegram_bot_token
 
-# Admin Emails (comma-separated)
-ADMIN_EMAILS=admin1@example.com,admin2@example.com
+# Admin Configuration
+ADMIN_EMAILS=admin@example.com,admin2@example.com
+
+# Session Secret
+SESSION_SECRET=your_random_secret_key_here
+```
+
+4. **Initialize the database** (Optional)
+```bash
+node init/initdb.js
+node init/add-products.js
+```
+
+5. **Start the application**
+```bash
+# Development
+node app.js
+
+# Or with nodemon
+nodemon app.js
+
+# Production with PM2
+pm2 start app.js --name agroconnect
+```
+
+6. **Access the application**
+```
+http://localhost:8080
+```
+
+---
+
+## 🌐 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. **Install Vercel CLI**
+```bash
+npm install -g vercel
+```
+
+2. **Login to Vercel**
+```bash
+vercel login
+```
+
+3. **Deploy**
+```bash
+vercel --prod
+```
+
+4. **Configure Environment Variables**
+- Go to Vercel Dashboard → Your Project → Settings → Environment Variables
+- Add all variables from `.env` file
+
+5. **Set up MongoDB Atlas**
+- Create a free cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Get connection string and add to Vercel environment variables
+
+### Deploy to Other Platforms
+
+#### Railway.app
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
+
+# Login and deploy
+railway login
+railway init
+railway up
+```
+
+#### Render.com
+- Connect GitHub repository
+- Set environment variables
+- Deploy automatically on push
+
+---
+
+## 📧 Email Configuration
+
+### Gmail Setup
+
+1. **Enable 2-Factor Authentication**
+   - Go to Google Account → Security
+   - Enable 2-Step Verification
+
+2. **Generate App Password**
+   - Go to Security → 2-Step Verification → App passwords
+   - Select "Mail" and "Other (Custom name)"
+   - Copy the 16-character password
+
+3. **Add to .env**
+```env
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_16_char_app_password
 ```
 
 ---
@@ -161,494 +443,305 @@ ADMIN_EMAILS=admin1@example.com,admin2@example.com
 
 ### Telegram Bot
 
-1. **Create Bot:**
+1. **Create Bot**
    - Open Telegram, search for @BotFather
-   - Send `/newbot`
-   - Follow instructions to get token
-   - Add token to `.env` as `TELEGRAM_TOKEN`
+   - Send `/newbot` and follow instructions
+   - Copy the bot token
 
-2. **Test Bot:**
-   - Search for your bot in Telegram
-   - Send `/start`
-   - Bot should respond with menu
+2. **Configure**
+```env
+TELEGRAM_TOKEN=your_bot_token_here
+```
 
-3. **Available Commands:**
-   - `/start` - Welcome menu
-   - `/recommend` - Crop recommendation
-   - `/products` - View product catalog
-   - `/subscribe <location>` - Weather alerts
-   - `/unsubscribe` - Stop alerts
-   - `/lang en|hi` - Change language
+3. **Start Bot**
+```bash
+node bots.js
+```
 
 ### WhatsApp Bot (Optional)
 
-1. **Activate:**
-   - Uncomment WhatsApp bot code in `bots.js`
-   - Install Chromium: `cd node_modules/puppeteer && npm install`
-   - Restart server
-   - Scan QR code with WhatsApp
-
-2. **Note:** Currently disabled to avoid Chromium dependency
+1. **Uncomment WhatsApp code in `bots.js`**
+2. **Restart server and scan QR code**
+3. **Note:** Requires Chromium (large dependency)
 
 ---
 
-## 📊 Core Modules
-
-### 1. Product Management
-- Add/Edit/Delete products
-- Bilingual product names (English/Hindi)
-- Category-based organization
-- Stock quantity tracking
-- Search and filter
-- Image management
-
-### 2. Customer Management (CRM)
-- Customer database
-- Purchase history
-- Credit/payment tracking
-- Contact management
-- Unique validation (phone/email)
-
-### 3. Worker Management
-- Employee records
-- Role assignment
-- Salary tracking
-- Contact information
-- Performance tracking ready
-
-### 4. Stock Management
-- Product-wise inventory
-- Quantity tracking
-- Low stock alerts
-- Stock movement history
-
-### 5. Admin Dashboard
-- Real-time business metrics
-- Customer count
-- Product count
-- Stock overview
-- Sales analytics ready
-
-### 6. AI Crop Advisory
-- Soil-based recommendations
-- Season-specific advice
-- Location-aware suggestions
-- Fertilizer recommendations
-- Bilingual responses
-
-### 7. Disease Detection
-- Image upload via bot
-- AI-powered diagnosis
-- Treatment recommendations
-- Prevention guidelines
-- Organic & chemical solutions
-
-### 8. Weather Intelligence
-- Automated alerts (every 6 hours)
-- Location-based forecasts
-- Crop-specific advisories
-- Extreme weather warnings
-
-### 9. Automation
-- Daily farming tips (8 AM)
-- Weather alerts (6-hour intervals)
-- Product announcements
-- Payment reminders
-
----
-
-## 🎯 API Endpoints
-
-### Products
-```
-GET    /prod              # List all products
-GET    /prod/new          # Add product form
-POST   /prod              # Create product
-GET    /prod/:id          # View product
-GET    /prod/:id/edit     # Edit product form
-PUT    /prod/:id          # Update product
-DELETE /prod/:id          # Delete product
-GET    /prod/api          # JSON API (for bots)
-```
-
-### Customers
-```
-GET    /cust              # List customers
-GET    /cust/new          # Add customer form
-POST   /cust              # Create customer
-GET    /cust/:id          # View customer
-GET    /cust/:id/edit     # Edit customer form
-PUT    /cust/:id          # Update customer
-DELETE /cust/:id          # Delete customer
-```
-
-### Workers
-```
-GET    /worker            # List workers
-GET    /worker/new        # Add worker form
-POST   /worker            # Create worker
-GET    /worker/:id        # View worker
-GET    /worker/:id/edit   # Edit worker form
-PUT    /worker/:id        # Update worker
-DELETE /worker/:id        # Delete worker
-```
-
-### Stock
-```
-GET    /stock             # List stock
-GET    /stock/new         # Add stock form
-POST   /stock             # Create stock entry
-GET    /stock/:id/edit    # Edit stock form
-PUT    /stock/:id         # Update stock
-```
-
-### Crop Advisory
-```
-POST   /api/recommend     # Get crop recommendation
-Body: { soil_type, season, location }
-```
+## 📊 API Endpoints
 
 ### Authentication
 ```
-GET    /auth/google       # Google OAuth login
-GET    /auth/google/callback  # OAuth callback
-GET    /auth/logout       # Logout
+GET    /auth/login              # Login page
+POST   /auth/login              # Login submit
+GET    /auth/register           # Register page
+POST   /auth/register           # Register submit
+GET    /auth/google             # Google OAuth
+GET    /auth/google/callback    # OAuth callback
+GET    /auth/logout             # Logout
+GET    /auth/forgot-password    # Forgot password page
+POST   /auth/forgot-password    # Send reset email
+GET    /auth/reset-password/:token  # Reset password page
+POST   /auth/reset-password/:token  # Reset password submit
+```
+
+### Products
+```
+GET    /user/products           # Product catalog
+GET    /prod                    # Admin product list
+POST   /prod                    # Create product
+GET    /prod/:id/edit           # Edit product
+PUT    /prod/:id                # Update product
+DELETE /prod/:id                # Delete product
+```
+
+### Orders
+```
+POST   /orders/place            # Place order
+GET    /user/orders             # User order history
+GET    /admin/orders            # Admin order management
+POST   /admin/orders/:id/status # Update order status
+```
+
+### Reviews
+```
+POST   /reviews/submit          # Submit review
+GET    /admin/reviews           # Admin review list
+POST   /admin/reviews/:id/approve   # Approve review
+POST   /admin/reviews/:id/reject    # Reject review
+```
+
+### Chatbot
+```
+POST   /chatbot/ask             # AI chatbot query
+```
+
+### Dashboard
+```
+GET    /dash                    # Admin dashboard
+GET    /user/dashboard          # User dashboard
 ```
 
 ---
 
-## 💡 Usage Examples
+## 🔒 Security Best Practices
 
-### Crop Recommendation API
-```bash
-curl -X POST http://localhost:8080/api/recommend \
-  -H "Content-Type: application/json" \
-  -d '{
-    "soil_type": "loamy",
-    "season": "Kharif",
-    "location": "Punjab"
-  }'
-```
+### Implemented Security Measures
 
-### Bot Interaction
-```
-Farmer: "loamy, Kharif, Punjab"
-Bot: "✅ Crop Recommendation
-🌱 Crop: Rice
-💡 Advice: Loamy soil is ideal for rice cultivation...
-🧪 Fertilizer: Urea, DAP
-🛒 Recommended Products: [list]"
-```
+1. **Password Security**
+   - Bcrypt hashing with salt rounds
+   - Password strength validation
+   - Secure password reset tokens
 
-### Disease Detection
-```
-Farmer: [Uploads crop image]
-Bot: "🔍 Analyzing image...
-📊 Disease: Early Blight
-🌿 Organic Treatment: Neem oil spray
-💊 Chemical Treatment: Mancozeb fungicide
-🛒 Available at shop: ₹450"
-```
+2. **Session Security**
+   - Secure session cookies
+   - Session expiration
+   - CSRF protection ready
 
----
+3. **Data Validation**
+   - Mongoose schema validation
+   - Input sanitization
+   - Unique constraints
 
-## 🔒 Security Features
+4. **Authentication**
+   - OAuth 2.0 integration
+   - Role-based access control
+   - Admin whitelist
 
-- Google OAuth 2.0 authentication
-- Role-based access control (Admin/User)
-- Session management
-- Environment variable protection
-- Input validation at schema level
-- Unique constraints (email, phone)
-- Admin whitelist system
+5. **Environment Protection**
+   - Sensitive data in .env
+   - .gitignore configuration
+   - No hardcoded credentials
 
 ---
 
 ## 📈 Business Impact
 
-### Measurable Results:
-- **339%** revenue increase
-- **250%** customer growth
-- **70%** operational efficiency gain
-- **85%** customer retention
-- **99.4%** API cost reduction
+### Platform Statistics
+- **340+ Happy Customers**
+- **55+ Products**
+- **24/7 Bot Support**
+- **Real-time Analytics**
 
-### ROI:
-- Investment: ₹2,10,000 (Year 1)
-- Returns: ₹1,85,05,000 (Year 1)
-- **ROI: 8,712%**
-- **Payback: 12 days**
-
----
-
-## 🚀 Deployment
-
-### 🎯 Quick Deploy to Vercel (Recommended - FREE!)
-
-**Total Time:** 35 minutes | **Cost:** $0
-
-```
-Step 1: MongoDB Atlas (15 min) → Step 2: Vercel (10 min) → Step 3: Test (10 min)
-```
-
-**📚 Deployment Guides:**
-- **START_HERE.md** - Beginner-friendly step-by-step guide (RECOMMENDED)
-- **QUICK_DEPLOY_GUIDE.md** - Quick reference for experienced users
-- **VERCEL_DEPLOYMENT.md** - Comprehensive detailed guide
-- **DEPLOYMENT.md** - Checklist format
-- **deploy-checklist.txt** - Quick checklist
-- **DEPLOYMENT_SUMMARY.txt** - Overview
-
-**⚠️ Important:** Repository is 260MB which causes GitHub push timeouts. Deploy directly via Vercel web interface (no push needed).
-
-**What Works on Vercel:**
-✅ Web dashboard, CRUD operations, Google OAuth, API endpoints, Crop recommendations, Disease detection
-
-**What Doesn't Work on Vercel:**
-❌ Telegram/WhatsApp bots, Cron jobs (deploy separately on Railway.app or Render.com)
-
-### Local Development
-```bash
-npm install
-node app.js
-# Visit http://localhost:8080
-```
-
-### Production (Traditional Hosting)
-```bash
-# Using PM2
-npm install -g pm2
-pm2 start app.js --name "agroconnect"
-pm2 save
-pm2 startup
-```
-
-### Docker (Optional)
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-EXPOSE 8080
-CMD ["node", "app.js"]
-```
-
-### Environment Setup
-- **Database:** MongoDB Atlas (cloud - recommended for Vercel)
-- **Hosting:** Vercel (web), Railway.app (bots)
-- **Domain:** Configure via Vercel dashboard
-- **SSL:** Automatic on Vercel
+### Key Benefits
+- ✅ Streamlined inventory management
+- ✅ Automated order processing
+- ✅ Enhanced customer engagement
+- ✅ AI-powered crop advisory
+- ✅ Mobile-accessible platform
+- ✅ Professional invoicing
+- ✅ Email automation
 
 ---
 
 ## 🧪 Testing
 
 ### Manual Testing Checklist
-- [ ] Web dashboard loads
-- [ ] Product CRUD operations
-- [ ] Customer management
-- [ ] Worker management
-- [ ] Stock tracking
-- [ ] Telegram bot responds
-- [ ] Crop recommendation works
-- [ ] Disease detection works
-- [ ] Weather alerts send
-- [ ] Daily tips broadcast
 
-### Test Accounts
-- Admin: Use whitelisted Google account
-- User: Any Google account
+#### Authentication
+- [ ] User registration works
+- [ ] Email login works
+- [ ] Google OAuth works
+- [ ] Password reset works
+- [ ] Logout works
+
+#### E-Commerce
+- [ ] Product catalog loads
+- [ ] Add to cart works
+- [ ] Order placement works
+- [ ] Email confirmation sent
+- [ ] PDF invoice generated
+
+#### Admin Functions
+- [ ] Dashboard loads
+- [ ] Product CRUD works
+- [ ] Order management works
+- [ ] Review moderation works
+- [ ] User management works
+
+#### Mobile Responsiveness
+- [ ] Homepage responsive
+- [ ] Navigation works on mobile
+- [ ] Forms usable on mobile
+- [ ] Dashboard responsive
+- [ ] Product catalog responsive
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Server Won't Start
+### Common Issues
+
+#### MongoDB Connection Error
 ```bash
 # Check MongoDB is running
 mongod --version
 
-# Check port availability
+# Verify connection string
+echo $MONGO_URL
+```
+
+#### Email Not Sending
+```bash
+# Verify Gmail app password
+# Check EMAIL_USER and EMAIL_PASS in .env
+# Ensure 2FA is enabled on Gmail
+```
+
+#### OAuth Not Working
+```bash
+# Verify Google Cloud Console settings
+# Check callback URL matches
+# Ensure OAuth consent screen is configured
+```
+
+#### Port Already in Use
+```bash
+# Find process using port 8080
 netstat -ano | findstr :8080
 
-# Check environment variables
-cat .env
+# Kill the process or change PORT in .env
 ```
-
-### Bot Not Responding
-```bash
-# Verify token
-echo $TELEGRAM_TOKEN
-
-# Check bot polling
-# Look for "Telegram polling error" in logs
-
-# Restart server
-pm2 restart agroconnect
-```
-
-### Database Connection Error
-```bash
-# Check MongoDB status
-systemctl status mongod
-
-# Verify connection string
-mongo mongodb://127.0.0.1:27017/AGRO_MANAGEMENT
-```
-
----
-
-## 📚 Documentation
-
-### For Shop Owners:
-- Daily operations guide included
-- Step-by-step setup instructions
-- Farmer onboarding process
-- Business impact metrics
-
-### For Developers:
-- Clean MVC architecture
-- Well-commented code
-- Modular structure
-- Easy to extend
-
-### For Farmers:
-- Bot usage instructions
-- Command reference
-- Language support
-- 24/7 availability
 
 ---
 
 ## 🤝 Contributing
 
 This is a production system. For modifications:
-1. Test thoroughly in development
-2. Maintain backward compatibility
-3. Update documentation
-4. Follow existing code style
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ---
 
 ## 📄 License
 
-ISC License - See LICENSE file
+ISC License - See [LICENSE](LICENSE) file for details
 
 ---
 
-## 👥 Support
+## 👨‍💻 Developer
 
-### Technical Issues:
+**Ajeet Kumar**
+- 📧 Email: ajeetkumarssm9987@gmail.com
+- 🐙 GitHub: [@Ajeetkumar1850](https://github.com/Ajeetkumar1850)
+- 💼 LinkedIn: [ajeet-kumar-06424b292](https://www.linkedin.com/in/ajeet-kumar-06424b292)
+
+---
+
+## 🙏 Acknowledgments
+
+- Google Gemini AI for intelligent crop advisory
+- MongoDB for robust database solution
+- Vercel for seamless deployment
+- Node.js community for excellent packages
+- All farmers and retailers using the platform
+
+---
+
+## 📞 Support
+
+### For Technical Issues
 - Check documentation first
 - Review error logs
 - Search existing issues
-- Contact development team
+- Contact: ajeetkumarssm9987@gmail.com
 
-### Business Questions:
-- Refer to operations guide
-- Check FAQ section
-- Contact shop owner support
+### For Business Inquiries
+- Demo requests
+- Custom features
+- Partnership opportunities
+- Contact via email or LinkedIn
 
 ---
 
 ## 🎯 Roadmap
 
-### Phase 1: ✅ Completed
+### ✅ Completed (v1.0)
 - Core retail management
-- Telegram bot integration
-- AI crop advisory
-- Disease detection
-- Weather alerts
-- Automation
+- E-commerce platform
+- Email automation
+- AI chatbot
+- Review system
+- Mobile-responsive UI
+- Multi-auth system
 
-### Phase 2: 🔄 In Progress
+### 🔄 In Progress (v1.1)
 - WhatsApp bot activation
-- Payment gateway integration
 - Advanced analytics
-- Mobile app
+- Payment gateway integration
+- SMS notifications
 
-### Phase 3: 📅 Planned
+### 📅 Planned (v2.0)
+- Mobile app (React Native)
 - Multi-location support
-- Franchise model
 - Marketplace features
-- IoT integration
+- IoT sensor integration
+- Blockchain for supply chain
 
 ---
 
-## 📊 Key Metrics
+## 📊 Project Stats
 
-**Development:**
-- 5,000+ lines of code
-- 20+ API endpoints
-- 6 database collections
-- 5 external API integrations
-
-**Features:**
-- 4 core management modules
-- 2 bot platforms
-- 2 languages supported
-- 3 AI-powered features
-
-**Impact:**
-- 2,000+ farmers served
-- 5 retail outlets managed
-- 70% efficiency gain
-- 30% retention increase
+- **Lines of Code:** 10,000+
+- **API Endpoints:** 30+
+- **Database Collections:** 9
+- **External APIs:** 5+
+- **Supported Languages:** English, Hindi (bot)
+- **Deployment:** Vercel (Serverless)
+- **Status:** Production Ready ✅
 
 ---
 
-## 🌟 Success Stories
+**Transform your agricultural business with AI-powered digital platform.**
 
-**Ramesh's Wheat Yield:**
-- Before: 18 quintals/acre
-- After: 25 quintals/acre (39% increase)
-- Extra income: ₹17,500/acre
-
-**Sunita's Tomato Crop:**
-- Crisis: Crop wilting at 9 PM
-- Bot diagnosed and advised
-- Crop saved (worth ₹50,000)
-- Brought 15 new customers
-
-**Shop Revenue:**
-- Before: ₹54,00,000/year
-- After: ₹2,37,25,000/year
-- Growth: 339% in first year
-
----
-
-## 💼 Professional Positioning
-
-**Project Category:** Enterprise Web Application
-**Industry:** AgriTech / Retail Management
-**Scale:** Production-ready MVP
-**Status:** Actively serving 2,000+ farmers
-
-**Technologies:**
-Node.js, Express.js, MongoDB, Mongoose, Google Gemini AI, Telegram Bot API, WhatsApp Web.js, OpenWeatherMap API, Passport.js, Google OAuth 2.0, EJS, JavaScript
-
-**Business Model:**
-- Retail sales (primary)
-- Advisory services (loyalty building)
-- Future: SaaS, Marketplace, Subscriptions
-
----
-
-## 📞 Contact
-
-**Project:** AgroConnect Pro
-**Version:** 1.0.0
-**Status:** Production Ready
-**Last Updated:** January 2026
-
----
-
-**Transform your agricultural retail business with AI-powered digital platform.**
-
-**From traditional shop to modern advisory center.**
-**From ₹54 lakhs to ₹2.37 crores in one year.**
+**From traditional shop to modern e-commerce platform.**
 
 ---
 
 *Built with ❤️ for farmers and agricultural retailers*
+
+**Last Updated:** February 2026
+**Version:** 1.0.0
+**Status:** Production Ready & Actively Maintained
